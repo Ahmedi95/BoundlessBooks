@@ -1,0 +1,105 @@
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_UserAuthLayout";
+}
+
+<div class="container">
+    <div class="row justify-content-center align-items-center" style="margin-top: 25px;">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Register</h5>
+                    <form id="registrationForm">
+                        <div class="row mb-3">
+                            <!-- First Name -->
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control item" id="firstName" name="FirstName" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid first name
+                                </div>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control item" id="lastName" name="LastName" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid last name
+                                </div>
+                            </div>
+                        </div>
+                        <!-- User-Name -->
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control item" id="username" name="UserName" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid user-name
+                            </div>
+                        </div>
+                        <!-- Email Address -->
+                        <div class="form-group mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control item" id="email" name="Email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="form-group mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control item" id="phone" name="PhoneNumber"
+                                pattern="[0-9]{10}" required>
+                            <small class="text-muted">Please enter a 10-digit phone number.</small>
+                            <div class="invalid-feedback">
+                                Please enter a valid phone number
+                            </div>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control item" id="password" name="Password" minlength="8"
+                                required>
+                            <small class="text-muted">Password should have at least 8 characters.</small>
+                            <div class="invalid-feedback">
+                                Please enter a valid password
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="saveUserDetails()">Register</button>
+                    </form>
+                    <p class="mt-3">Already have an account? <a asp-controller="Login" asp-action="Index">Login
+                            here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function saveUserDetails() {
+
+        var form = document.getElementById('registrationForm');
+
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+        }
+
+        var formData = $('#registrationForm').serialize();
+
+        // Make AJAX request
+        $.ajax({
+            url: '/Register/RegisterUser', // Replace with your actual controller and action
+            type: 'POST',
+            data: formData,
+
+            success: function (response) {
+                if (response.success) {
+                    $('#registerForm')[0].reset();
+                    window.location.href = '/Login/Index';
+                }
+            }
+        });
+    }
+</script>
