@@ -1,0 +1,145 @@
+<!-- Another variation with a button -->
+<div class="searchBar d-flex justify-content-center">
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value=""
+        class="bg-black text-white" style="max-width: 750px;" />
+    <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
+        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+            <path fill="#666666"
+                d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+        </svg>
+    </button>
+</div>
+
+<div class="container mx-auto">
+    <div class="row d-flex justify-content-center mt-4">
+        @if (Model != null)
+        {
+            @foreach (var book in Model)
+            {
+                <div class="card mx-3" style="width: 15rem; margin-bottom: 25px; border-radius: 10px">
+                    <img src="~/assets/images/books/@book.Image" class="card-img-top mt-2" alt="Product Image"
+                        style="max-width: 275px; max-height: 300px; border-radius: 10px" />
+                    <!-- Display "Out Of Stock" tag if StockQty is zero -->
+                    @if (book.StockQty == 0)
+                    {
+                        <span class="badge bg-danger position-absolute top-0 end-0 mt-2 me-2">Out Of Stock</span>
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <p class="card-text"><strong>Price: Rs.@Math.Round(book.Price, 2)</strong></p>
+                        <p class="card-text">Author: @(book.AuthorNavigation?.Name ?? "Unknown Author")</p>
+
+                        <!-- Two buttons next to each other -->
+                        <div class="d-flex justify-content-between mt-auto">
+                            <a onclick="showBookDetails(@book.Id, '@book.Title', @Math.Round(book.Price, 2),  '@book.Description', '@book.Image', '@book.StockQty', '@(book.AuthorNavigation?.Name ?? "Unknown Author")')"
+                                class="btn btn-secondary" data-toggle="modal">More Details</a>
+                            <a class="btn btn-danger @(book.StockQty == 0 ? "disabled" : "")"><i
+                                    class="fa fa-cart-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="modal fade" id="bookDetailsModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailsModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                    onclick="closeBookDetailsModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 d-flex justify-content-center">
+                        <img src="" id="bookDetailsModalImage" class="img-fluid" alt="Book Image"
+                            style="max-width: 275px; max-height: 300px; border-radius: 10px">
+                    </div>
+                    <div class="col-md-8">
+                        <h5 id="bookDetailsModalTitle"></h5>
+                        <p id="bookDetailsModalPrice" style="font-weight: bold;"></p>
+                        <p id="bookDetailsModalAuthor"></p>
+                        <p style="padding-right: 25px;" class="text-lead" id="bookDetailsModalDescription"></p>
+
+
+                        <div class="row col-6 px-2">
+                            <!-- "Out Of Stock" badge -->
+                            <span id="bookDetailsModalOutOfStock" class="badge bg-danger mb-2"
+                                style="display: none;">Out Of
+                                Stock</span>
+                        </div>
+
+                        <!-- "Add to Cart button -->
+                        <button id="bookDetailsModalAddToCart" class="btn btn-success">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function closeBookDetailsModal() {
+        $('#bookDetailsModal').modal('hide');
+    }
+
+    function showBookDetails(id, title, price, description, image, stock, author) {
+        // Set the modal content with the book details
+        $('#bookDetailsModalTitle').text(title);
+        $('#bookDetailsModalPrice').text('Price: Rs.' + price);
+        $('#bookDetailsModalAuthor').text('Author: ' + author);
+        $('#bookDetailsModalDescription').text(description);
+        $('#bookDetailsModalImage').attr('src', 'assets/images/books/' + image);
+
+        // Show the "Out Of Stock" badge and conditionally disable the "Add to Cart" button
+        if (stock == 0) {
+            $('#bookDetailsModalOutOfStock').show();
+            $('#bookDetailsModalAddToCart').prop('disabled', true);
+        } else {
+            $('#bookDetailsModalOutOfStock').hide();
+            $('#bookDetailsModalAddToCart').prop('disabled', false);
+        }
+
+        // Show the modal
+        $('#bookDetailsModal').modal('show');
+    }
+</script>
+
+<style>
+    .searchBar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #searchQueryInput {
+        width: 100%;
+        height: 2.8rem;
+        background: #f5f5f5;
+        outline: none;
+        border: none;
+        border-radius: 1.625rem;
+        padding: 0 3.5rem 0 1.5rem;
+        font-size: 1rem;
+    }
+
+    #searchQuerySubmit {
+        width: 3.5rem;
+        height: 2.8rem;
+        margin-left: -3.5rem;
+        background: none;
+        border: none;
+        outline: none;
+    }
+
+    #searchQuerySubmit:hover {
+        cursor: pointer;
+    }
+</style>

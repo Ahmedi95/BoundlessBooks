@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using BoundlessBooks.Data;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,10 +8,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // dependency injection
 builder.Services.AddDbContext<BoundlessBooksDBContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())));
+
+// registering services for the DI
 builder.Services.AddScoped<BoundlessBooks.Services.RegisterService>();
 builder.Services.AddScoped<BoundlessBooks.Services.LoginService>();
+builder.Services.AddScoped<BoundlessBooks.Services.HomeService>();
 
 builder.Services.AddControllersWithViews();
+
+// configuring session state
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Adjust as needed
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -22,8 +35,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+// using session state
+app.UseSession();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "assets")),
+    RequestPath = "/assets"
+});
 
 app.UseRouting();
 
@@ -31,6 +54,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}");
 
 app.Run();

@@ -33,7 +33,7 @@ public class RegisterController : Controller
 
             if (isRegisteredUser)
             {
-                return Json(new { success = true, message = "Registration successful" });
+                return Json(new { success = true, message = "Registration Successful" });
             }
             else
             {

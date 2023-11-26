@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using BoundlessBooks.Models;
 using BoundlessBooks.Services;
 
 namespace BoundlessBooks.Controllers;
@@ -32,7 +31,8 @@ public class LoginController : Controller
 
             if (isValidLogin)
             {
-                return Json(new { success = true, message = "Login successful" });
+                HttpContext.Session.SetString("Username", userName);
+                return Json(new { success = true, message = "Login Successful" });
             }
             else
             {
