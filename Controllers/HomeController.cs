@@ -24,4 +24,11 @@ public class HomeController : Controller
         return View(books);
     }
 
+    // search by title
+    public async Task<IActionResult> Search(string searchQuery)
+    {
+        var books = await _HomeService.SearchBooks(searchQuery);
+        return PartialView("_BookListPartial", books);
+    }
+
 }

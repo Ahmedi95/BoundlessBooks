@@ -1,0 +1,51 @@
+<!-- _BookListPartial.cshtml -->
+@model List<Book>
+
+<div class="container mx-auto">
+    <div class="row d-flex justify-content-center mt-4">
+        @if (Model != null)
+        {
+            <!-- looping through the list of books -->
+            @foreach (var book in Model)
+            {
+                <div class="card mx-3" style="width: 15rem; margin-bottom: 25px; border-radius: 10px">
+                    <!-- book image -->
+                    <img src="~/assets/images/books/@book.Image" class="card-img-top mt-2" alt="Product Image"
+                        style="max-width: 275px; max-height: 300px; border-radius: 10px" />
+                    <!-- Display "Out Of Stock" tag if StockQty is zero -->
+                    @if (book.StockQty == 0)
+                    {
+                        <span class="badge bg-danger position-absolute top-0 end-0 mt-2 me-2">Out Of Stock</span>
+                    }
+
+                    <div class="card-body">
+                        <!-- book Title -->
+                        <h5 class="card-title">@book.Title</h5>
+                        <!-- book price rounded up to nearest 2 -->
+                        <p class="card-text"><strong>Price: Rs.@Math.Round(book.Price, 2)</strong></p>
+                        <!-- author of the book -->
+                        <p class="card-text">Author: @(book.AuthorNavigation?.Name ?? "Unknown Author")</p>
+
+                        <!-- more details and add to cart buttons -->
+                        <div class="d-flex justify-content-between mt-auto">
+                            <a onclick="showBookDetails(@book.Id, '@book.Title', @Math.Round(book.Price, 2),  '@book.Description', '@book.Image', '@book.StockQty', '@(book.AuthorNavigation?.Name ?? "Unknown Author")')"
+                                class="btn btn-secondary" data-toggle="modal">More Details</a>
+
+                            <a class="btn btn-danger @(book.StockQty == 0 ? "disabled" : "")" onclick="addToCart(@book.Id)">
+                                <i class="fa fa-cart-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        @if (Model.Count() == 0)
+        {
+            <div class="container text-center mt-4">
+                <div class="alert alert-warning" role="alert">
+                    <p><strong>No results found.</strong>Please try refining your search.</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
