@@ -16,6 +16,7 @@ public class RegisterController : Controller
         _registerService = registerService;
     }
 
+    // default action that displays the register view
     public IActionResult Index()
     {
         // returns the registration view

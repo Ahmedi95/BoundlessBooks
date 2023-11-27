@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "r5BCy8tRFLkp4XQQju3yKKcFTalz9P6IyiUutdUNebgaox+L2/eNPMIP8G1Xuj2dG0KwV0G8/PA32h5QBCSyNQ==",
+  "dgSpecHash": "F8T7cbr4kWSTYbm/vEZvy936JaAWNxBDP1jME4RjdQSDjuqdjZP+xcxJeedvGVpTAIf7y84s0J1jaf6t7E4Eqw==",
   "success": true,
   "projectFilePath": "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/BoundlessBooks.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "/home/ahmed/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/home/ahmed/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/home/ahmed/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
+    "/home/ahmed/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/ahmed/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "/home/ahmed/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",
     "/home/ahmed/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

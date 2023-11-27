@@ -6,11 +6,13 @@ namespace BoundlessBooks.Services;
 
 public class LoginService
 {
-
+    // Private field to hold the reference to the database context
     private readonly BoundlessBooksDBContext _dbContext;
 
+    // Constructor for LoginService, which takes a BoundlessBooksDBContext as a dependency
     public LoginService(BoundlessBooksDBContext dbContext)
     {
+        // Assigning the provided database context to the private field
         _dbContext = dbContext;
     }
 
@@ -34,6 +36,7 @@ public class LoginService
         return errors;
     }
 
+    // method to check if user exits and validate
     public bool LoginUser(string userName, string password)
     {
         // Validate username and password
@@ -61,7 +64,7 @@ public class LoginService
             // Hashing the provided password with the retrieved salt
             byte[] hashedPassword = PasswordHelper.HashPassword(password, salt);
 
-            // Checking if the hashed password matches the existing user's password
+            // Checking if the hashed password matches the existing user's hashed password
             if (Convert.ToBase64String(hashedPassword) == existingUser.Password)
             {
                 // Passwords match, no need to update

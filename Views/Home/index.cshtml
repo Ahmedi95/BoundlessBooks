@@ -1,6 +1,8 @@
-<!-- Another variation with a button -->
+<link rel="stylesheet" type="text/css" href="~/assets/css/home.css">
+
+<!-- Search field -->
 <div class="searchBar d-flex justify-content-center">
-    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search" value=""
+    <input id="searchQueryInput" type="text" name="searchQueryInput" placeholder="Search Book Title" value=""
         class="bg-black text-white" style="max-width: 750px;" />
     <button id="searchQuerySubmit" type="submit" name="searchQuerySubmit">
         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
@@ -10,13 +12,16 @@
     </button>
 </div>
 
+<!-- Container with book cards -->
 <div class="container mx-auto">
     <div class="row d-flex justify-content-center mt-4">
         @if (Model != null)
         {
+            <!-- looping through the list of books -->
             @foreach (var book in Model)
             {
                 <div class="card mx-3" style="width: 15rem; margin-bottom: 25px; border-radius: 10px">
+                    <!-- book imagge -->
                     <img src="~/assets/images/books/@book.Image" class="card-img-top mt-2" alt="Product Image"
                         style="max-width: 275px; max-height: 300px; border-radius: 10px" />
                     <!-- Display "Out Of Stock" tag if StockQty is zero -->
@@ -26,16 +31,22 @@
                     }
 
                     <div class="card-body">
+                        <!-- book Title -->
                         <h5 class="card-title">@book.Title</h5>
+                        <!-- boo proce rounded up to nearest 2 -->
                         <p class="card-text"><strong>Price: Rs.@Math.Round(book.Price, 2)</strong></p>
+                        <!-- author of the book -->
                         <p class="card-text">Author: @(book.AuthorNavigation?.Name ?? "Unknown Author")</p>
 
-                        <!-- Two buttons next to each other -->
+                        <!-- more details and add to cart buttons -->
                         <div class="d-flex justify-content-between mt-auto">
                             <a onclick="showBookDetails(@book.Id, '@book.Title', @Math.Round(book.Price, 2),  '@book.Description', '@book.Image', '@book.StockQty', '@(book.AuthorNavigation?.Name ?? "Unknown Author")')"
                                 class="btn btn-secondary" data-toggle="modal">More Details</a>
-                            <a class="btn btn-danger @(book.StockQty == 0 ? "disabled" : "")"><i
-                                    class="fa fa-cart-plus"></i></a>
+
+                            <a class="btn btn-danger @(book.StockQty == 0 ? "disabled" : "")" onclick="addToCart(@book.Id)">
+                                <i class="fa fa-cart-plus"></i>
+                            </a>
+
                         </div>
                     </div>
                 </div>
@@ -44,11 +55,13 @@
     </div>
 </div>
 
+<!-- bootsrtap modal - popup to display the details for each book -->
 <div class="modal fade" id="bookDetailsModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailsModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <!-- Modal Title -->
                 <h5 class="modal-title" id="bookDetailsModalLabel">Book Details</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                     onclick="closeBookDetailsModal()">
@@ -58,10 +71,12 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-center">
+                        <!-- Book Image -->
                         <img src="" id="bookDetailsModalImage" class="img-fluid" alt="Book Image"
                             style="max-width: 275px; max-height: 300px; border-radius: 10px">
                     </div>
                     <div class="col-md-8">
+                        <!-- Book Details -->
                         <h5 id="bookDetailsModalTitle"></h5>
                         <p id="bookDetailsModalPrice" style="font-weight: bold;"></p>
                         <p id="bookDetailsModalAuthor"></p>
@@ -84,62 +99,6 @@
     </div>
 </div>
 
-<script>
-    function closeBookDetailsModal() {
-        $('#bookDetailsModal').modal('hide');
-    }
-
-    function showBookDetails(id, title, price, description, image, stock, author) {
-        // Set the modal content with the book details
-        $('#bookDetailsModalTitle').text(title);
-        $('#bookDetailsModalPrice').text('Price: Rs.' + price);
-        $('#bookDetailsModalAuthor').text('Author: ' + author);
-        $('#bookDetailsModalDescription').text(description);
-        $('#bookDetailsModalImage').attr('src', 'assets/images/books/' + image);
-
-        // Show the "Out Of Stock" badge and conditionally disable the "Add to Cart" button
-        if (stock == 0) {
-            $('#bookDetailsModalOutOfStock').show();
-            $('#bookDetailsModalAddToCart').prop('disabled', true);
-        } else {
-            $('#bookDetailsModalOutOfStock').hide();
-            $('#bookDetailsModalAddToCart').prop('disabled', false);
-        }
-
-        // Show the modal
-        $('#bookDetailsModal').modal('show');
-    }
-</script>
-
-<style>
-    .searchBar {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    #searchQueryInput {
-        width: 100%;
-        height: 2.8rem;
-        background: #f5f5f5;
-        outline: none;
-        border: none;
-        border-radius: 1.625rem;
-        padding: 0 3.5rem 0 1.5rem;
-        font-size: 1rem;
-    }
-
-    #searchQuerySubmit {
-        width: 3.5rem;
-        height: 2.8rem;
-        margin-left: -3.5rem;
-        background: none;
-        border: none;
-        outline: none;
-    }
-
-    #searchQuerySubmit:hover {
-        cursor: pointer;
-    }
-</style>
+@section scripts {
+    <script src="~/assets/js/home.js"></script>
+}

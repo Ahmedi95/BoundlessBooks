@@ -13,7 +13,7 @@ public class RegisterService
     // Constructor for RegisterService, which takes a BoundlessBooksDBContext as a dependency
     public RegisterService(BoundlessBooksDBContext dbContext)
     {
-        // Assign the provided database context to the private field
+        // Assigning the provided database context to the private field
         _dbContext = dbContext;
     }
 

@@ -15,13 +15,14 @@ public class LoginController : Controller
         _loginService = loginService;
     }
 
+    // default action to return the login view
     public IActionResult Index()
     {
-        // Assuming that "Login" view is in the "Views/UserAuth" folder
         return View("~/Views/UserAuth/login.cshtml");
     }
 
     [HttpPost]
+    // post method to register a user
     public IActionResult Login(string userName, string password)
     {
         try
@@ -31,7 +32,11 @@ public class LoginController : Controller
 
             if (isValidLogin)
             {
+                // clearing the session
+                HttpContext.Session.Clear();
+                // adding the username in the session for user authentication
                 HttpContext.Session.SetString("Username", userName);
+
                 return Json(new { success = true, message = "Login Successful" });
             }
             else

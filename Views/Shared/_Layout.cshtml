@@ -1,8 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 @using Microsoft.AspNetCore.Http
+@using BoundlessBooks.Helpers
 @{
     var username = Context.Session.GetString("Username");
+}
+@{
+    var cartItems = Context.Session.GetObjectFromJson<List<Book>>("CartItems") ?? new List<Book>();
 }
 
 <head>
@@ -24,9 +28,10 @@
                     <img src="~/assets/images/general/appLogo.png" alt="Logo" style="max-width: 150px;">
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+                    data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon "></span>
                 </button>
 
                 <div class="collapse navbar-collapse flex-end" id="navbarNav">
@@ -46,11 +51,64 @@
                             </div>
                         }
 
+                        <!-- Shopping cart icon -->
+                        <button class="btn btn-outline-secondary mx-2 position-relative" id="cartButton">
+                            <i class="fa fa-shopping-cart"></i>
+                            @if (cartItems.Count() > 0)
+                            {
+                                <span class="badge badge-pill bg-danger" id="cartItemCount">@cartItems.Count()</span>
+                            }
+                        </button>
+
                     </div>
                 </div>
 
             </div>
         </nav>
+
+        <!-- Drawer content -->
+        <div class="drawer" id="cartDrawer">
+            <div class="text-center text-white mt-3">My shopping cart</div>
+
+            @if (cartItems != null && cartItems.Any())
+            {
+                <div class="row mt-4 px-3">
+                    @foreach (var book in cartItems)
+                    {
+                        <div class="col-md-3 mb-4">
+                            <img src="~/assets/images/books/@book.Image" alt="Book Image" style="width: 60px;">
+                        </div>
+                        <div class="col-md-5 mb-4 text-white">
+                            <h5>@book.Title</h5>
+                            <p>Price: Rs.@Math.Round(book.Price, 2)</p>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <button class="btn btn-danger" onclick="removeFromCart(@book.Id)">Remove</button>
+                        </div>
+                    }
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12 text-white">
+                        <h5>Total Price: Rs.@Math.Round(cartItems.Sum(book => book.Price), 2)</h5>
+                    </div>
+                </div>
+                <div class="row px-2">
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-secondary col-12">Checkout</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>Your cart is empty.</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+
     </header>
 
     <div class="container">
@@ -70,6 +128,75 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script>
+        function toggleDrawer() {
+            $("#cartDrawer").toggleClass("drawer-open");
+        }
+
+        $(document).ready(function () {
+            // Click event for the cart button
+            $("#cartButton").click(function (e) {
+                // Prevent default behavior (e.g., navigating to a link)
+                e.preventDefault();
+
+                // Toggle the drawer
+                toggleDrawer();
+            });
+
+            // Close the drawer when clicking outside
+            $(document).mouseup(function (e) {
+                var container = $("#cartDrawer");
+                if (!container.is(e.target) && container.has(e.target).length === 0) {
+                    container.removeClass("drawer-open");
+                }
+            });
+
+            // Add your onclick function for the shopping cart
+            $("#cartButton").click(function () {
+                // Call your custom function here
+                // Example: updateCart();
+            });
+        });
+
+        function removeFromCart(bookId) {
+            // Make AJAX request to remove the item
+            $.ajax({
+                url: '/Cart/RemoveItem', // Replace with your actual controller and action
+                type: 'POST',
+                data: { bookId: bookId },
+                success: function (response) {
+                    location.reload();
+                },
+            });
+        }
+    </script>
+
+    <style>
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            /* Start off-screen */
+            width: 400px;
+            height: 100vh;
+            background-color: darkslategrey;
+            transition: right 0.3s ease-in-out;
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .drawer-open {
+            right: 0;
+        }
+
+        .badge {
+            top: 0;
+            right: 0;
+            position: 'absolute';
+            transform: 'translate(50%, -50%)';
+        }
+    </style>
 </body>
 
 </html>

@@ -48,3 +48,4 @@
 /home/ahmed/assignments/ahmed-ismail/BoundlessBooks/bin/Debug/net6.0/System.Text.Json.dll
 /home/ahmed/assignments/ahmed-ismail/BoundlessBooks/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
 /home/ahmed/assignments/ahmed-ismail/BoundlessBooks/bin/Debug/net6.0/package-lock.json
+/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/bin/Debug/net6.0/Newtonsoft.Json.dll

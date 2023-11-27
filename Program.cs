@@ -13,6 +13,7 @@ builder.Services.AddDbContext<BoundlessBooksDBContext>(options => options.UseMyS
 builder.Services.AddScoped<BoundlessBooks.Services.RegisterService>();
 builder.Services.AddScoped<BoundlessBooks.Services.LoginService>();
 builder.Services.AddScoped<BoundlessBooks.Services.HomeService>();
+builder.Services.AddScoped<BoundlessBooks.Services.CartService>();
 
 builder.Services.AddControllersWithViews();
 

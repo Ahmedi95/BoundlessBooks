@@ -17,6 +17,7 @@ public class HomeController : Controller
         _HomeService = HomeService;
     }
 
+    // displays the home view and returns the books list
     public async Task<IActionResult> Index()
     {
         var books = await _HomeService.PopulateBooks();

@@ -7,8 +7,9 @@
     <div class="row justify-content-center align-items-center" style="height: 100vh">
         <div class=" col-md-6">
             <div class="card" style="border-radius: 25px;">
-                <!-- Logo -->
+                <!-- app Logo -->
                 <div class="text-center mt-5">
+                    <!-- redirects to the home page -->
                     <a href="@Url.Action("Index", "Home")">
                         <img src="~/assets/images/general/appLogo.png" alt="Logo" style="max-width: 250px;">
                     </a>
@@ -46,6 +47,7 @@
                         <button type="submit" class="btn btn-danger col-12" onclick="loginToSite(event)">Login</button>
                     </form>
 
+                    <!-- redirects to registration page -->
                     <p class="mt-3 mb-5 text-center">Don't have an account? <a asp-controller="Register"
                             asp-action="Index">Register
                             here</a></p>
@@ -60,20 +62,3 @@
     <script src="~/assets/js/togglePasswors.js"></script>
     <script src="~/assets/js/login.js"></script>
 }
-
-<style>
-    body,
-    html {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-    }
-
-    .field-icon {
-        float: right;
-        margin-right: 10px;
-        margin-top: -30px;
-        position: relative;
-        z-index: 2;
-    }
-</style>
