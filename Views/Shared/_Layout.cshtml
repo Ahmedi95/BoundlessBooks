@@ -94,7 +94,7 @@
                 </div>
                 <div class="row px-2">
                     <div class="col-md-12 text-center">
-                        <button class="btn btn-secondary col-12">Checkout</button>
+                        <button class="btn btn-secondary col-12" onclick="checkout()">Checkout</button>
                     </div>
                 </div>
             }
@@ -152,23 +152,22 @@
                 }
             });
 
-            // Add your onclick function for the shopping cart
-            $("#cartButton").click(function () {
-                // Call your custom function here
-                // Example: updateCart();
-            });
         });
 
         function removeFromCart(bookId) {
             // Make AJAX request to remove the item
             $.ajax({
-                url: '/Cart/RemoveItem', // Replace with your actual controller and action
+                url: '/Cart/RemoveItem',
                 type: 'POST',
                 data: { bookId: bookId },
                 success: function (response) {
                     location.reload();
                 },
             });
+        }
+
+        function checkout() {
+            window.location.href = '/Checkout/Index';
         }
     </script>
 

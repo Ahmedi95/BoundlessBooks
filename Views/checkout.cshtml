@@ -1,0 +1,75 @@
+@using BoundlessBooks.Helpers
+@{
+    var username = Context.Session.GetString("Username");
+}
+@{
+    var cartItems = Context.Session.GetObjectFromJson<List<Book>>("CartItems") ?? new List<Book>();
+}
+
+<div class="container">
+    <div class="py-2 text-center">
+        <div class="text-center">
+            <!-- redirects to the home page -->
+            <a href="@Url.Action("Index", "Home")">
+                <img src="~/assets/images/general/appLogo.png" alt="Logo" style="max-width: 300px;">
+            </a>
+            <h1>CHECKOUT</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Your cart</span>
+                <span class="badge bg-secondary badge-pill">@cartItems.Count()</span>
+            </h4>
+            <ul class="list-group mb-3">
+                @foreach (var item in cartItems)
+                {
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">@item.Title</h6>
+                        </div>
+                        <span class="text-muted">Rs.@Math.Round(item.Price, 2)</span>
+                    </li>
+                }
+
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (RS)</span>
+                    <strong>Rs.@Math.Round(cartItems.Sum(item => item.Price), 2)</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Shipping address</h4>
+            <form class="needs-validation" novalidate>
+
+                <div class="mb-3">
+                    <label for="address">Address</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                    <div class="invalid-feedback">
+                        Please enter your shipping address.
+                    </div>
+                </div>
+                <hr class="mb-4">
+
+                <h4 class="mb-3">Payment</h4>
+                <h6>Only Cash On Delivery Available Now (COD)</h6>
+                <hr class="mb-4">
+
+                @if (string.IsNullOrWhiteSpace(username))
+                {
+                    <div class="alert alert-warning" role="alert">
+                        You need to have an account to complete the purchase. <a href="/Login/Index">Login here</a>.
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block" type="button" disabled>Complete Purchase</button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Complete Purchase</button>
+                }
+
+            </form>
+        </div>
+    </div>
+</div>
