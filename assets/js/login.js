@@ -23,7 +23,6 @@ function loginToSite(event) {
                 // Redirecting to the home page
                 window.location.href = 'http://localhost:7129/';
             } else {
-                // Handle login failure (display an error message, etc.)
                 alert('Login failed. Please try again.');
             }
         },

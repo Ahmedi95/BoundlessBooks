@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BoundlessBooks.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/assets/css/layout.css" />
 </head>
 
 <body>
@@ -68,6 +69,11 @@
 
         <!-- Drawer content -->
         <div class="drawer" id="cartDrawer">
+
+            <!-- Close button for small devices -->
+            <button class="btn btn-primary d-lg-none text-right" onclick="closeCartDrawer()">Close</button>
+
+
             <div class="text-center text-white mt-3">My shopping cart</div>
 
             @if (cartItems != null && cartItems.Any())
@@ -126,76 +132,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/assets/js/layout.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        function toggleDrawer() {
-            $("#cartDrawer").toggleClass("drawer-open");
-        }
-
-        $(document).ready(function () {
-            // Click event for the cart button
-            $("#cartButton").click(function (e) {
-                // Prevent default behavior (e.g., navigating to a link)
-                e.preventDefault();
-
-                // Toggle the drawer
-                toggleDrawer();
-            });
-
-            // Close the drawer when clicking outside
-            $(document).mouseup(function (e) {
-                var container = $("#cartDrawer");
-                if (!container.is(e.target) && container.has(e.target).length === 0) {
-                    container.removeClass("drawer-open");
-                }
-            });
-
-        });
-
-        function removeFromCart(bookId) {
-            // Make AJAX request to remove the item
-            $.ajax({
-                url: '/Cart/RemoveItem',
-                type: 'POST',
-                data: { bookId: bookId },
-                success: function (response) {
-                    location.reload();
-                },
-            });
-        }
-
-        function checkout() {
-            window.location.href = '/Checkout/Index';
-        }
-    </script>
-
-    <style>
-        .drawer {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            /* Start off-screen */
-            width: 400px;
-            height: 100vh;
-            background-color: darkslategrey;
-            transition: right 0.3s ease-in-out;
-            overflow-y: auto;
-            z-index: 999;
-        }
-
-        .drawer-open {
-            right: 0;
-        }
-
-        .badge {
-            top: 0;
-            right: 0;
-            position: 'absolute';
-            transform: 'translate(50%, -50%)';
-        }
-    </style>
 </body>
 
 </html>

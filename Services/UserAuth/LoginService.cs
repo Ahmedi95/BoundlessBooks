@@ -55,7 +55,6 @@ public class LoginService
 
             if (existingUser == null)
             {
-                // Handle the case where the user is not found
                 return false;
             }
 

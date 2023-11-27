@@ -25,7 +25,7 @@ public class HomeService
 
     public async Task<List<Book>> SearchBooks(string searchQuery)
     {
-        if (string.IsNullOrWhiteSpace(searchQuery))
+        if (string.IsNullOrEmpty(searchQuery))
         {
             // Return all books if no search query is provided
             return await _dbContext.Books.Include(b => b.AuthorNavigation).ToListAsync();

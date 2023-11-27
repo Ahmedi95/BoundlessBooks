@@ -15,6 +15,7 @@ builder.Services.AddScoped<BoundlessBooks.Services.LoginService>();
 builder.Services.AddScoped<BoundlessBooks.Services.HomeService>();
 builder.Services.AddScoped<BoundlessBooks.Services.CartService>();
 builder.Services.AddScoped<BoundlessBooks.Services.CheckoutService>();
+builder.Services.AddScoped<BoundlessBooks.Services.UserService>();
 
 
 builder.Services.AddControllersWithViews();

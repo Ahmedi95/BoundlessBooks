@@ -10,7 +10,7 @@ public class HomeController : Controller
     // Private field to store an instance of HomeService
     private readonly HomeService _HomeService;
 
-    // Constructor for LoginController, taking HomeService as a dependency
+    // Constructor for HomeController, taking HomeService as a dependency
     public HomeController(HomeService HomeService)
     {
         // Assigning the provided HomeService instance to the private field

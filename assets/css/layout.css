@@ -1,0 +1,24 @@
+.drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    /* Start off-screen */
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: darkslategrey;
+    transition: right 0.3s ease-in-out;
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.drawer-open {
+    right: 0;
+}
+
+.badge {
+    top: 0;
+    right: 0;
+    position: 'absolute';
+    transform: 'translate(50%, -50%)';
+}
