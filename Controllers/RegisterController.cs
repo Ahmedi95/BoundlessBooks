@@ -41,10 +41,10 @@ public class RegisterController : Controller
                 return Json(new { success = false, message = "Registration failed" });
             }
         }
-        catch (ArgumentException ex)
+        catch (Exception ex)
         {
-
-            return Json(new { success = false, message = ex });
+            // Validation error occurred
+            return Json(new { success = false, message = "Validation failed", errors = new List<string> { ex.Message } });
         }
     }
 

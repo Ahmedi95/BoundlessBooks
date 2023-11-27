@@ -21,7 +21,7 @@ public class CheckoutService
     {
         var order = new Order
         {
-            Date = new DateTime(),
+            Date = DateTime.Now,
             Status = "order-placed",
             UserId = userId,
             TotalAmount = totalAmount,

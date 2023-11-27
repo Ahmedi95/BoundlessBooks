@@ -23,7 +23,13 @@ function loginToSite(event) {
                 // Redirecting to the home page
                 window.location.href = 'http://localhost:7129/';
             } else {
-                alert('Login failed. Please try again.');
+                if (response.errors) {
+                    // Display validation errors
+                    alert('Validation failed: ' + response.errors.join(', '));
+                } else {
+                    // Display other errors
+                    alert('An error occurred: ' + response.message);
+                }
             }
         },
     });

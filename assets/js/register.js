@@ -21,6 +21,14 @@ function saveUserDetails(event) {
         success: function (response) {
             if (response.success) {
                 window.location.href = '/Login/Index';
+            } else {
+                if (response.errors) {
+                    // Display validation errors
+                    alert('Validation failed: ' + response.errors.join(', '));
+                } else {
+                    // Display other errors
+                    alert('An error occurred: ' + response.message);
+                }
             }
         }
     });

@@ -68,14 +68,14 @@ public class RegisterService
 
         if (validationErrors.Count > 0)
         {
-            throw new ArgumentException("Invalid user details");
+            throw new Exception(validationErrors.ToString());
         }
 
         // Checks if a user with the same username already exists
         if (_dbContext.Users.Any(u => u.UserName == user.UserName))
         {
             // User with the same username already exists, return false
-            return false;
+            throw new Exception("User Already Exists");
         }
 
         // Generating a unique salt for each user
@@ -97,7 +97,7 @@ public class RegisterService
         }
         catch (DbUpdateException)
         {
-            return false; // Registration failed
+            throw new Exception("Registration Failed");
         }
     }
 

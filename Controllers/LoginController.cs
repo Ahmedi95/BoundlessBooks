@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using BoundlessBooks.Services;
+using System;
 
 namespace BoundlessBooks.Controllers;
 
@@ -44,10 +45,10 @@ public class LoginController : Controller
                 return Json(new { success = false, message = "Login failed" });
             }
         }
-        catch (ArgumentException ex)
+        catch (Exception ex)
         {
-
-            return Json(new { success = false, message = ex });
+            // Validation error occurred
+            return Json(new { success = false, message = "Validation failed", errors = new List<string> { ex.Message } });
         }
     }
 }

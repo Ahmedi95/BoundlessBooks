@@ -44,7 +44,7 @@ public class LoginService
 
         if (validationErrors.Count > 0)
         {
-            throw new ArgumentException("Invalid user details");
+            throw new Exception(validationErrors.ToString());
         }
 
         // Checks if a user with the same username already exists
@@ -55,7 +55,7 @@ public class LoginService
 
             if (existingUser == null)
             {
-                return false;
+                throw new Exception("User not found");
             }
 
             byte[] salt = Convert.FromBase64String(existingUser.Salt);
@@ -71,13 +71,13 @@ public class LoginService
             }
             else
             {
-                return false; // passwords do not match}
+                throw new Exception("Passwords do not match");
+
             }
         }
         else
         {
-            // User with the same username does not exists, return false
-            return false;
+            throw new Exception("User not found");
 
         }
     }
