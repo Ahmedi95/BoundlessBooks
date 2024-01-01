@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BoundlessBooks.Migrations
 {
     [DbContext(typeof(BoundlessBooksDBContext))]
-    [Migration("20231125205027_BookTitleAndDescriptionUpdate")]
-    partial class BookTitleAndDescriptionUpdate
+    [Migration("20231227192849_AddImageUrlToBooks")]
+    partial class AddImageUrlToBooks
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,10 @@ namespace BoundlessBooks.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)")
                         .HasColumnName("image");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal")

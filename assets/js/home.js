@@ -15,7 +15,7 @@ function showBookDetails(id, title, price, description, image, stock, author) {
     $('#bookDetailsModalPrice').text('Price: Rs.' + price);
     $('#bookDetailsModalAuthor').text('Author: ' + author);
     $('#bookDetailsModalDescription').text(description);
-    $('#bookDetailsModalImage').attr('src', 'assets/images/books/' + image);
+    $('#bookDetailsModalImage').attr('src', 'https://images-book-store.s3.amazonaws.com/' + image);
 
     // Showing the "Out Of Stock" badge and conditionally disable the "Add to Cart" button
     if (stock == 0) {

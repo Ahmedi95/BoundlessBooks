@@ -20,6 +20,7 @@ public class HomeService
     public async Task<List<Book>> PopulateBooks()
     {
         var books = await _dbContext.Books.Include(b => b.AuthorNavigation).ToListAsync();
+        
         return books;
     }
 

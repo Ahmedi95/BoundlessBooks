@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/BoundlessBooks.csproj": {}
+    "C:\\BoundlessBooks\\BoundlessBooks.csproj": {}
   },
   "projects": {
-    "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/BoundlessBooks.csproj": {
+    "C:\\BoundlessBooks\\BoundlessBooks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/BoundlessBooks.csproj",
+        "projectUniqueName": "C:\\BoundlessBooks\\BoundlessBooks.csproj",
         "projectName": "BoundlessBooks",
-        "projectPath": "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/BoundlessBooks.csproj",
-        "packagesPath": "/home/ahmed/.nuget/packages/",
-        "outputPath": "/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/obj/",
+        "projectPath": "C:\\BoundlessBooks\\BoundlessBooks.csproj",
+        "packagesPath": "C:\\Users\\Ahmed\\.nuget\\packages\\",
+        "outputPath": "C:\\BoundlessBooks\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ahmed/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AWSSDK.S3": {
+              "target": "Package",
+              "version": "[3.7.305, )"
+            },
             "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -48,6 +54,10 @@
               "target": "Package",
               "version": "[7.0.10, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -55,6 +65,14 @@
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql.Design": {
+              "target": "Package",
+              "version": "[1.1.2, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.7.10, )"
             }
           },
           "imports": [
@@ -63,7 +81,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -75,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.125/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

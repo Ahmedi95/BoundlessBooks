@@ -1,13 +1,27 @@
 using Microsoft.EntityFrameworkCore;
 using BoundlessBooks.Data;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// Add Redis cache
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = "books-data-tti7zt.serverless.use1.cache.amazonaws.com:6379,abortConnect=false"; 
+    options.InstanceName = "AllBooksCache";
+    options.Configuration = "localhost:6379";
+});
+
+
 // dependency injection
-builder.Services.AddDbContext<BoundlessBooksDBContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version())));
+builder.Services.AddDbContext<BoundlessBooksDBContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version()))
+    .EnableSensitiveDataLogging()
+    .EnableDetailedErrors());
 
 // registering services for the DI
 builder.Services.AddScoped<BoundlessBooks.Services.RegisterService>();
@@ -42,7 +56,6 @@ if (!app.Environment.IsDevelopment())
 // using session state
 app.UseSession();
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseStaticFiles(new StaticFileOptions

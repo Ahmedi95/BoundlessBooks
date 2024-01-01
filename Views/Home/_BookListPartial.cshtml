@@ -10,8 +10,8 @@
             {
                 <div class="card mx-3" style="width: 15rem; margin-bottom: 25px; border-radius: 10px">
                     <!-- book image -->
-                    <img src="~/assets/images/books/@book.Image" class="card-img-top mt-2" alt="Product Image"
-                        style="max-width: 275px; max-height: 300px; border-radius: 10px" />
+                    <img src="https://images-book-store.s3.amazonaws.com/@book.Image" alt="@book.Image" style="max-width: 275px; max-height: 300px; border-radius: 10px" />
+                                      
                     <!-- Display "Out Of Stock" tag if StockQty is zero -->
                     @if (book.StockQty == 0)
                     {

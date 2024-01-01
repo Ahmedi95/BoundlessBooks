@@ -5,52 +5,55 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BoundlessBooks
 build_property.RootNamespace = BoundlessBooks
-build_property.ProjectDir = /home/ahmed/assignments/ahmed-ismail/BoundlessBooks/
+build_property.ProjectDir = C:\BoundlessBooks\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/ahmed/assignments/ahmed-ismail/BoundlessBooks
+build_property.MSBuildProjectDirectory = C:\BoundlessBooks
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/checkout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvY2hlY2tvdXQuY3NodG1s
+[C:/BoundlessBooks/Views/checkout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcY2hlY2tvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/Home/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9pbmRleC5jc2h0bWw=
+[C:/BoundlessBooks/Views/Home/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/Home/_BookListPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9fQm9va0xpc3RQYXJ0aWFsLmNzaHRtbA==
+[C:/BoundlessBooks/Views/Home/_BookListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxfQm9va0xpc3RQYXJ0aWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/Shared/_UserAuthLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Vc2VyQXV0aExheW91dC5jc2h0bWw=
+[C:/BoundlessBooks/Views/Shared/_UserAuthLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyQXV0aExheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/BoundlessBooks/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/UserAuth/login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlckF1dGgvbG9naW4uY3NodG1s
+[C:/BoundlessBooks/Views/UserAuth/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckF1dGhcbG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/UserAuth/register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlckF1dGgvcmVnaXN0ZXIuY3NodG1s
+[C:/BoundlessBooks/Views/UserAuth/register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckF1dGhccmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/BoundlessBooks/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/BoundlessBooks/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/ahmed/assignments/ahmed-ismail/BoundlessBooks/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-p9iuxp5u0d
+[C:/BoundlessBooks/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-lhebonz6eb
